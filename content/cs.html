@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/include/meta.html"; ?> 
+</head>
+
+<body>
+    <div class="wrap">
+        <!--header:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/header.html"; ?> 
+        <!--header:e-->
+        <!--wrap:s    -->
+        <section class="top_img" style="width:100%; height:550px; background-image: url(/common/img/topimg_cs.jpg)">
+            <div class="topimg_title">
+                <img src="/common/img/topimg_logo.png" alt="" class="topimg_logo">
+                <p class="topimg_title_p font-nanum">NOTICE</p>
+            </div>
+        </section>
+        
+        <section id="section_cs_page">
+            <div class="inner">
+                <div class="section_title">
+                    <img src="/common/img/title/section_title_notice.png" alt="">
+                </div>
+                <div class="section_notice">
+                    <div class="category_wrap font-noto">
+                        <ul class="oh">
+                            <li class="width10 fl">번호</li>
+                            <li class="width65 fl">제목</li>
+                            <li class="width15 fl">등록일</li>
+                            <li class="width10 fl">조회수</li>
+                        </ul>
+                    </div>
+                    <div class="content_wrap font-noto">
+                        <ul>
+<?
+$listno = 10;    //  한페이지 출력할 리스트수
+$pageno = 5;  // 체이징에 디스플레이되는 수
+$gubuns = $_GET["gubuns"];
+$searchSelect = $_GET["searchSelect"];
+$searchText = $_GET["searchText"];
+if($searchText){
+	$addquery = "and $searchSelect like '%$searchText%' ";
+}
+if($gubuns){
+	$addquery2 = "and gubun like '%$gubuns%' ";
+}
+$sqlstr02 = "select count(*) from mtNotice where no > 0  $addquery $addquery2";
+
+$sqlqry02= mysql_query($sqlstr02);  // 쿼리문의 mysql에 넣는다.
+$total = @mysql_result($sqlqry02, 0, 0); //전체 내용을 출력한다.  / total 이라는 변수 에넣는다.
+//현제 page 읽어 오기
+if(empty($cp)||$cp<=0){ $cp=1; }
+$tp =ceil($total / $listno); // 총페이지수 = (총게시물수 / 페이지당 리스트수)
+$cb =ceil($cp / $pageno); //현재블록 = (현재페이지 / 표시되는 페이지수)
+$sp = ($cb - 1)* $pageno + 1 ; //블록에 처음 page 구하기  /startpage
+$ep = ($cb * $pageno);  // 블록의 마지막페이지  // endpage
+$tb = ceil($tp / $pageno);  //총블록수 = (총페이지수 / 표시되는 페이지수)
+$startno = ($cp - 1 ) * $listno;   //  첫번째로 읽어올 번호
+$boardno = $total - ($listno* ($cp-1));  //디스플레이 게시물의 일련번호
+$listStartNum = $total - $listno * ($cp-1);
+
+
+$select_query = "select * from mtNotice where no > 0  $addquery $addquery2 order by gubun ASC,no DESC LIMIT  $startno,$listno";
+$result01 = mysql_query( $select_query) or die(mysql_error());
+while($row = mysql_fetch_array($result01)){
+	$i++;
+?>
+                            <li class="content_line">
+                                <ul class="oh">
+                                    <li class="width10 fl"><?=$listStartNum--;?></li>
+                                    <li class="width65 fl">
+                                        <a href="/content/readCountN.php?no=<?=$row[no]?>&cp=<?=$cp?>&searchSelect=<?=$searchSelect?>&searchText=<?=$searchText?>"><?=$row[title]?></a>
+                                    </li>
+                                    <li class="width15 fl"><?=date("Y.m.d",$row[writeTime])?></li>
+                                    <li class="width10 fl"><?=number_format($row[readCount]*1)?></li>
+                                </ul>
+                            </li>
+<?}?>
+<?if($total==0){?>
+							<li class="content_line">
+                                <ul class="oh">
+                                    <li class="width10 fl" style="width:100%;">등록된데이터가 없습니다.</li>
+                                </ul>
+                            </li>
+<?}?>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="search_area">
+                    <ul class="oh">
+                        <li class="fl">
+                            <select name="searchSelect" id="searchSelect">
+                                <option value="title">제목</option>
+                                <option value="content">내용</option>
+                            </select>
+                        </li>
+                        <li class="fl input_wrap">
+                            <input type="text" id="searchText" name="searchText" onkeyDown="javascript: serachEntFunc()">
+                            <img src="/common/img/search_icon.png" alt="" onclick="javascript: serachClickFunc()">
+                        </li>
+                    </ul>
+                </div>
+                <div class="paging">
+                    <ul>
+<?
+	if($cb>1){
+	$prev_page = $sp-1;
+?>
+						  <li>
+                            <a onclick="javascript: gopage01('<?=$prev_page?>')" style="cursor:pointer;">&lt;&lt;</a>
+                        </li>
+<?}else{ $prev_page=1;?>
+						  <li>
+                            <a onclick="javascript: gopage01('<?=$prev_page?>')" style="cursor:pointer;">&lt;&lt;</a>
+                        </li>
+<?}?>
+<?
+	for($i=$sp;$i <=$ep&&$i<=$tp;$i++){
+		if($cp==$i){ 
+?>
+                        <li>
+                            <a onclick="javascript: gopage01('<?=$i?>')"  style="cursor:pointer;color:red;"><?=$i?></a>
+                        </li>
+<?
+	}else{
+		$number_shape=${i};
+?>
+                        <li>
+                            <a onclick="javascript: gopage01('<?=$i?>')"  style="cursor:pointer;"><?=$number_shape?></a>
+                        </li>
+<?}}?>
+<?
+	if($cb<$tb){
+	$next_page= $ep+1;
+?>
+                        <li>
+                            <a onclick="javascript: gopage01('<?=$next_page?>')"  style="cursor:pointer;">&gt;&gt;</a>
+                        </li>
+<?}else { 
+	$next_page= $tp;
+	if($next_page==0){
+		$next_page=1;
+	}
+?>
+                        <li>
+                            <a onclick="javascript: gopage01('<?=$next_page?>')"  style="cursor:pointer;">&gt;&gt;</a>
+                        </li>
+<?}?>
+                    </ul>
+                </div>
+                
+            </div>
+        </section>       
+<script>
+function serachClickFunc(){
+	location.href="/content/cs.html?searchSelect="+$("#searchSelect").val()+"&searchText="+$("#searchText").val();
+}
+function serachEntFunc(){
+	
+	if(event.keyCode==13){
+		location.href="/content/cs.html?searchSelect="+$("#searchSelect").val()+"&searchText="+$("#searchText").val();
+	}
+}
+function gopage01(n){
+		location.href = "/content/cs.html?cp="+n+"&searchSelect=<?=$searchSelect?>&searchText=<?=$searchText?>";
+}
+</script>        
+        <!--wrap:e-->
+        
+        <!--footer:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/footer.html"; ?> 
+        <!--    footer:e-->
+    </div>
+</body>
+
+</html>

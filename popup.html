@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국국제가구 및 인테리어 산업대전</title>
+    <script language="JavaScript">
+        function setCookie(name, value, expiredays) {
+            var date = new Date();
+            date.setDate(date.getDate() + expiredays);
+            document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
+        }
+    
+        function closePopup() {
+            if (document.getElementById("check").value) {
+                setCookie("popupYN", "N", 1);
+                self.close();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="padding: 10px;">
+
+    
+    <div>
+        <img src="/common/img/popup/kofurn3.png" width="800" height="auto"/>
+    </div>
+    <span>공식 홈페이지 및 사전예약 링크: </span>
+    <a href="https://www.kofurn.or.kr/" target="_blank">
+        https://www.kofurn.or.kr/
+    </a>
+    <br/>
+    <div style="float: right; margin-top: 10px;">
+        <input type="checkbox" id="check" onclick="closePopup();">
+        <fontsize="3"> <b>하루에 한번만 보기 및 닫기</b> </font>
+    </div>
+</div>
+</body>
+</html>
+

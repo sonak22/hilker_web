@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/include/meta_640.html"; ?> 
+</head>
+
+<body>
+    <div class="wrap">
+        <!--header:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/header_640.html"; ?> 
+        <!--header:e-->
+        <!--wrap:s    -->
+        <section class="top_img" style="width:100%; height:250px;background-size:cover; background-image: url(/common/img/topimg_product_detail.png)">
+            <div class="topimg_title">
+                <p class="topimg_title_p font-nanum">PRODUCT DETAIL</p>
+                <p class="topimg_title_sub font-noto">각 제품의 상세설명을 제공합니다.</p>
+            </div>
+        </section>
+        
+        
+        <section id="section_view_sum_img">
+            <div class="inner">
+                <div class="detail_title_wrap">
+                    <h2 class="font-nanum">Leben</h2>
+                    <p class="font-nanum">리븐 : 사랑하는</p>
+                </div>
+                <div class="detail_sum_wrap oh">
+                    <div class="detail_sum_big_img">
+                        <img src="/common/img/product/leben_ivory/ex_01.jpg" alt="">
+                    </div>
+                    <div class="detail_sum_small_img">
+                        <ul>
+                            <li class="on">
+                                <img src="/common/img/product/leben_ivory/ex_01.jpg" alt="" style="">
+                            </li>
+                            <li>
+                                <img src="/common/img/product/leben_ivory/ex_02.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="/common/img/product/leben_ivory/ex_03.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="detail_sum_info_wrap font-noto">
+                    <h3>판매가격</h3>
+                    <p>Basic (아이보리+오렌지) : 2,450,000</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section_detail">
+            <div class="inner">
+                <div>
+                    <img style="width:100%;" src="/common/img/mobile/product/leben_ivory_01.jpg" alt=""/>
+                </div>
+                <video oncontextmenu="return false;" id="myVideo" width="100%" height="auto" controls 
+                style="display:block;margin:0 auto;" poster="/common/img/thumb_fabric.png">
+                    <source src="/common/video/fabric.mp4" type="video/mp4">
+                </video> 
+                <div>
+                    <img style="width:100%;" src="/common/img/mobile/product/leben_ivory_02.jpg" alt=""/>
+                    <img style="width:80%; margin:0 auto 80px;" src="/common/img/product/material_leben_ivory.jpg" alt="">
+                </div>
+            </div>
+        </section>
+        
+        <div class="other_product oh width100">
+            <div class="fl width50 position-relative prev_wrap">
+                <a id="prevUrl" >
+                    <img id="prevImg" class="width100" alt="">
+                </a>
+            </div>
+            <div class="fr width50 position-relative next_wrap">
+                <a id="nextUrl">
+                    <img id="nextImg" class="width100" alt="">
+                </a>
+            </div>
+        </div>
+        <!--wrap:e-->
+        
+        <!--footer:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/footer_640.html"; ?> 
+        <!--    footer:e-->
+    </div>
+    <script>
+        var currentModel = "leben_ivory";
+    </script>
+    <script src="/common/js/model_script_mo.js"></script>
+</body>
+
+</html>

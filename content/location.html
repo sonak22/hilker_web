@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/include/meta.html"; ?> 
+</head>
+
+<body>
+    <div class="wrap">
+        <!--header:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/header.html"; ?> 
+        <!--header:e-->
+        <!--wrap:s    -->
+        <section class="top_img" style="width:100%; height:550px; background-image: url(/common/img/topimg_location.jpg)">
+            <div class="topimg_title" style="text-align: center; padding-top:250px;">
+                <img src="/common/img/topimg_logo.png" alt="" style="width:45px; height:53px; margin:0 auto;">
+                <p class="font-nanum" style="color: #fff; margin-top:25px; font-size:44px;">OUR STORE</p>
+            </div>
+        </section>
+        
+        <section id="section_location" style="padding-bottom:100px;">
+            <div class="section_title">
+                <img src="/common/img/title/section_title_store.png" alt="스토어">
+            </div>
+            <div class="location_info text-center font-noto">
+                <ul class="oh mb40">
+                    <li class="fl mr20" >
+                        <img src="/common/img/shop_01.jpg" width="386" alt="">
+                    </li>
+                    <li class="fl mr20">
+                        <img src="/common/img/shop_02.jpg" width="386" alt="">
+                    </li>  
+                    <li class="fl">
+                        <img src="/common/img/shop_03.jpg" width="386" alt="">
+                    </li>                  
+                </ul>
+                <!-- 매장정보 1개 (메인) -->
+                <ul class="oh location">
+                    <li class="fl">
+                        <img src="/common/img/index/location_information.png" alt="">
+                    </li>
+                    <li class="fl">
+                        <!--<img src="/common/img/index/location_direction.png" alt="">-->
+                        <div id="daumRoughmapContainer1586234041618" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </li>                    
+                </ul>
+                <!-- 매장정보 1개 (파주직영) -->
+                <ul class="oh location">
+                    <li class="fl">
+                        <img src="/common/img/location/location_paju.jpg" alt="">
+                    </li>
+                    <li class="fl">
+                        <!--<img src="/common/img/index/location_direction.png" alt="">-->
+                        <div id="daumRoughmapContainer1589849972731" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </li>                    
+                </ul>
+                <!-- 매장 정보 3개 -->
+                <ul class="oh location sub">
+                    <li class="fl">
+                        <img src="/common/img/location/location_miho.jpg" alt="">
+                    </li>  
+                    <li class="fl">
+                        <img src="/common/img/location/location_sangmu.jpg" alt="">
+                    </li>   
+                    <li class="fl">
+                        <img src="/common/img/location/location_hyundae.jpg" alt="">
+                    </li>
+                </ul>
+                <!-- 매장 지도  3개 -->
+                 <ul class="oh location sub">
+                    <li class="fl">
+                        <div id="daumRoughmapContainer1590653380561" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </li>   
+                    <li class="fl">
+                        <div id="daumRoughmapContainer1593162839484" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </li>    
+                    <li class="fl">
+                        <div id="daumRoughmapContainer1594020716108" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </li>
+                </ul>
+                <ul class="oh location sub">
+                    <li class="fl">
+                    
+                    </li>
+                    <li class="fl">
+                    </li>  
+                    <li class="fl">
+                    </li>                   
+                </ul>
+                <ul class="oh location sub">
+                    <li class="fl">
+                    
+                    </li>
+                    <li class="fl">
+
+                    </li>   
+                    <li class="fl">
+
+                    </li>                 
+                </ul>
+            </div>
+            
+            <!--
+                2. 설치 스크립트 //첫번째 매장
+                * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+            -->
+            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+            <!-- 3. 실행 스크립트 -->
+            <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "1586234041618",
+                    "key" : "xtfq",
+                    "mapWidth" : "581",
+                    "mapHeight" : "384"
+                }).render();
+            </script>
+            <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "1589849972731",
+                    "key" : "yfhk",
+                    "mapWidth" : "581",
+                    "mapHeight" : "384"
+                }).render();
+            </script>
+            <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "1590653380561",
+                    "key" : "yk9y",
+                    "mapWidth" : "385",
+                    "mapHeight" : "360"
+                }).render();
+            </script>
+        </section>
+        <script charset="UTF-8">
+            new daum.roughmap.Lander({
+                "timestamp" : "1593162839484",
+                "key" : "yy6u",
+                "mapWidth" : "385",
+                "mapHeight" : "360"
+            }).render();
+        </script>
+        <script charset="UTF-8">
+            new daum.roughmap.Lander({
+                "timestamp" : "1594020716108",
+                "key" : "2z42m",
+                "mapWidth" : "385",
+                "mapHeight" : "360"
+            }).render();
+        </script>
+        
+        <!--wrap:e-->
+        
+        <!--footer:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/footer.html"; ?> 
+        <!--    footer:e-->
+    </div>
+</body>
+
+</html>

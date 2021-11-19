@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/include/meta_640.html"; ?> 
+    
+</head>
+<?
+$no=$_GET[no];
+$cp=$_GET[cp];
+$searchSelect=$_GET[searchSelect];
+$searchText=$_GET[searchText];
+$query = "select * from mtNotice where no='$no' ";
+$result = mysql_query( $query) or die(mysql_error());
+$row = mysql_fetch_array($result);
+?>
+<body>
+    <div class="wrap">
+        <!-- header 640-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/header_640.html"; ?> 
+        <!-- header -->    
+        <!--wrap:s    -->
+        <section class="top_img" style="width:100%; height:250px; background-size:cover;background-image: url(/common/img/mobile/topimg_cs.jpg)">
+            <div class="topimg_title">
+                <p class="topimg_title_p font-nanum">NOTICE</p>
+                <p class="topimg_title_sub font-noto">공지사항</p>
+            </div>
+        </section>
+        
+        <section id="section_cs_page_view">
+            <div class="inner">
+                <div class="section_title">
+                    <img src="/common/img/title/section_title_notice.png" alt="">
+                </div>
+                <div class="section_notice_view">
+                    <div class="category_title">
+                        <span><?=$row[title]?></span>
+                    </div>
+                    <div class="category_wrap font-noto oh">
+                        <ul class="oh fr">
+                            <li class="fl"><?=date("Y.m.d",$row[writeTime])?></li>
+                            <li class="fl">|</li>
+                            <li class="fl">조회수 <?=number_format($row[readCount])?></li>                                
+                        </ul>
+                    </div>
+<style>
+.content_wrap img{max-width:100%;}
+</style>
+                    <div class="content_wrap font-noto">
+                        <?=$row[content]?>
+                    </div>
+                </div>
+ <?
+$select_query2 = "select * from mtNotice  where   no*1 < '$row[no]'    order by no*1 DESC";
+$result2 = mysql_query( $select_query2) or die(mysql_error());
+$row2 = mysql_fetch_array($result2);
+?>  
+<?
+$select_query3 = "select * from mtNotice where  no*1 > '$row[no]'    order by no*1 ASC";
+$result3 = mysql_query( $select_query3) or die(mysql_error());
+$row3 = mysql_fetch_array($result3);
+?>
+<!-- 제일 끝 번호 :s-->
+<?
+$select_query5 = "select * from mtNotice where no > 0   order by no*1  DESC";
+$result5 = mysql_query( $select_query5) or die(mysql_error());
+$row5 = mysql_fetch_array($result5);
+?> 
+<!-- 제일 끝 번호 :s-->
+<!-- 제일 앞 번호 :s-->
+<?
+$select_query6 = "select * from mtNotice where no > 0  order by no*1 ASC";
+$result6 = mysql_query( $select_query6) or die(mysql_error());
+$row6 = mysql_fetch_array($result6);
+?>                   
+                <div class="list_move font-noto">
+                    <ul>
+                        <li class="width40">
+<?if($row2['no']==""){?>	
+                            <a href="/content/cs_view_640.html?no=<?=$row5[no]?>">
+                                <h4>이전글</h4>
+                                <p><?=$row5[title]?></p>
+                            </a>
+<?}else{?>
+							<a href="/content/cs_view_640.html?no=<?=$row2[no]?>">
+                                <h4>이전글</h4>
+                                <p><?=$row2[title]?></p>
+                            </a>
+<?}?>
+                        </li>
+                        <li class="width20">
+                            <a href="/content/cs_640.html?cp=<?=$cp?>&searchSelect<?=$searchSelect?>&searchText<?=$searchText?>">목록</a>
+                        </li>
+                        <li class="width40">
+<?if($row3['no']==""){?>
+                            <a href="/content/cs_view_640.html?no=<?=$row6[no]?>">
+                                <h4>다음글</h4>
+                                <p><?=$row6[title]?></p>
+                            </a>
+<?}else{?>
+							 <a href="/content/cs_view_640.html?no=<?=$row3[no]?>">
+                                <h4>다음글</h4>
+                                <p><?=$row3[title]?></p>
+                            </a>
+<?}?>
+                        </li>                                              
+                    </ul>
+                </div>
+                
+            </div>
+        </section>       
+        
+        <!--wrap:e-->
+        
+        <!--footer:s-->
+        <?php include $_SERVER['DOCUMENT_ROOT']."/include/footer_640.html"; ?> 
+        <!--    footer:e-->
+    </div>
+</body>
+
+</html>
